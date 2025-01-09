@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>Flask Travel</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <header class="container mt-5">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Flask Travel</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% for dep in departures %}
+          <li class="nav-item">
+            <a class="nav-link" href="/departures/{{ dep.code }}">{{ dep.name }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </header>
+  <main class="container mt-3">
+    <section class="jumbotron text-center mt-4">
+      <h1 class="display-4">Тури автобусом</h1>
+      <p class="lead">Для відпочинку</p>
+      <p>Найпопулярніші напрямки</p>
+    </section>
+    <div class="row mt-5">
+      {% for tour in tours %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <img src="{{ tour.picture }}" class="card-img-top" alt="{{ tour.title }}">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ tour.title }}</h2>
+            <p class="card-text">{{ tour.description }}</p>
+            <p><strong>Ціна:</strong> {{ tour.price }} UAH</p>
+            <a href="/tours/{{ tour.id }}" class="btn btn-sm btn-primary">Деталі туру</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>

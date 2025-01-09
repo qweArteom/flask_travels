@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ departure.name }}</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+  <header class="container mt-3">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">Flask Travel</a>
+    </nav>
+  </header>
+  <main class="container mt-3">
+    <h1 class="display-5 mt-4">Вирушаємо {{ departure.name }}</h1>
+    <p class="mb-4">Знайдено {{ tours|length }} турів</p>
+    <div class="row mt-5">
+      {% for tour in tours %}
+      <div class="col-4">
+        <div class="card mb-4">
+          <img src="{{ tour.picture }}" class="card-img-top img-fluid" alt="{{ tour.title }}">
+          <div class="card-body">
+            <h2 class="h5 card-title">{{ tour.title }}</h2>
+            <p class="card-text">{{ tour.description }}</p>
+            <p><strong>Ціна:</strong> {{ tour.price }} UAH</p>
+            <a href="/tours/{{ tour.id }}" class="btn btn-sm btn-primary">Деталі туру</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </main>
+</body>
+</html>
